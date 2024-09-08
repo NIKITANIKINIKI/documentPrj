@@ -5,14 +5,14 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../../app/providers/store";
+import { useDispatch} from "react-redux";
+import { AppDispatch } from "../../../app/providers/store";
 import { setToken } from "../../../entities/user/model/userSlice";
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-  const { username } = useSelector((state: RootState) => state.user);
+  const username=localStorage.getItem('authName')
 
   const handleLogout = () => {
     dispatch(setToken(null));
