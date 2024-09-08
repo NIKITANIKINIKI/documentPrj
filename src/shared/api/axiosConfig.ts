@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { InternalAxiosRequestConfig, AxiosError } from "axios";
 
 const HOST = "https://test.v5.pryaniky.com";
 
@@ -7,14 +7,14 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use(
-  (config) => {
+  (config: InternalAxiosRequestConfig) => {
     const token = window.localStorage.getItem("authToken");
-    if (token) {
+    if (token && config.headers) {
       config.headers["x-auth"] = token;
     }
     return config;
   },
-  (error) => {
+  (error: AxiosError) => {
     return Promise.reject(error);
   }
 );
