@@ -3,14 +3,14 @@ import axios from "../../../shared/api/axiosConfig";
 import { UserDoc } from '../../../entities/data/model/dataSlice';
 import toast from "react-hot-toast";
 
-export const createUserDoc = createAsyncThunk<UserDoc, UserDoc>(
-  'userDocs/createUserDoc',
-  async (userDoc: UserDoc, { rejectWithValue }) => {
+export const updateUserDoc = createAsyncThunk(
+  'userDocs/updateUserDoc',
+  async ({ id, ...userDoc }: { id: string } & Partial<UserDoc>, { rejectWithValue }) => {
     try {
-      const response = await axios.post('/ru/data/v3/testmethods/docs/userdocs/create', userDoc);
+      const response = await axios.post(`/ru/data/v3/testmethods/docs/userdocs/set/${id}`, userDoc);
       
       if (response.status === 200) {
-        toast.success("Документ успешно создан!");
+        toast.success("Документ успешно обновлен!");
         return response.data;
       } else {
         toast.error("Неожиданный статус ответа");
@@ -21,9 +21,9 @@ export const createUserDoc = createAsyncThunk<UserDoc, UserDoc>(
         toast.error("Ошибка сервера");
         return rejectWithValue("Ошибка сервера (500): Попробуйте позже.");
       }
-      toast.error("Ошибка при создании документа");
+      toast.error("Ошибка при обновлении документа");
       return rejectWithValue(
-        error.response?.data?.message || "Ошибка при создании документа"
+        error.response?.data?.message || "Ошибка при обновлении документа"
       );
     }
   }

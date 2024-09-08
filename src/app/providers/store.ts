@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userSlice from '../../entities/user/model/userSlice';
+import userDocsSlice from '../../entities/data/model/dataSlice'
  
-
 export const store = configureStore({
   reducer: {
     user: userSlice,
-    // record: recordReducer,
+    userDocs: userDocsSlice
   },
 });
 
