@@ -206,7 +206,7 @@ const FormData: React.FC<FormDataProps> = ({
         helperText={errors.employeeSignatureName}
       />
 
-      <Box className="flex justify-end mt-4">
+      <Box className="flex justify-end py-2">
         {onSave && (
           <Button
             variant="contained"

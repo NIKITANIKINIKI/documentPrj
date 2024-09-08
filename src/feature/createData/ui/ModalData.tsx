@@ -2,7 +2,6 @@ import { Button, Typography } from "@mui/material";
 import React from "react";
 import FormDoc from "../../formData/ui/FormDoc";
 import Model from "../../../shared/ui/Model/Model";
-import Spinner from "../../../shared/ui/Spinner/Spinner";
 
 const ModalData: React.FC = () => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
